@@ -1,3 +1,17 @@
-body{
+nav, ul {
+    display: flex;
+}
+
+li{
+    list-style: none;
+}
+
+ul{
+    gap: 34px;
+
+}
+
+nav{
     background-color: red;
+    padding: 23px;
 }
