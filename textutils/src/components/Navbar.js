@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 function Navbar(props) {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-secondary ">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {props.title}
@@ -40,7 +40,7 @@ function Navbar(props) {
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-primary" type="submit">
               Search
             </button>
           </form>
@@ -57,6 +57,6 @@ Navbar.propTypes = {
   aboutText: PropTypes.string.isRequired,
 };
 Navbar.defaultProps = {
-    title:'set title here',
-   aboutText: 'About text here'
-}
+  title: "set title here",
+  aboutText: "About text here",
+};
