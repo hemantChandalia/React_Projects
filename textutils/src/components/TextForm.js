@@ -117,6 +117,24 @@ export default function TextForm(props) {
     }
   };
 
+  function countingLines(text) {
+    // text.split(/\r\n|\r|\n/).length
+
+    // Split the file content by line breaks
+    const lines = text.split("\n");
+
+    // Filter out blank lines
+    const nonBlankLines = lines.filter((line) => line.trim() !== "");
+
+    // Count the number of non-blank lines
+    const numberOfNonBlankLines = nonBlankLines.length;
+
+    // console.log(`Lines: ${numberOfNonBlankLines}`);
+
+    return numberOfNonBlankLines;
+  }
+  countingLines(text);
+
   return (
     <>
       <div>
@@ -190,7 +208,9 @@ export default function TextForm(props) {
           {text.length}
           <br />
           <strong>Lines:</strong>
-          {text.split(/\r\n|\r|\n/).length}
+          {countingLines(text)}
+
+          {/* {text.split(/\r\n|\r|\n/).length} */}
           <br />
           <strong>Sentences:</strong>
           {/* someText = someText.replace(/(\r\n|\n|\r)/gm, "");
