@@ -9,11 +9,13 @@ export default function TextForm(props) {
     // console.log("Uppercase was clicked" + text);
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert(": Converted to uppercase!", "success");
   };
   const handleLoClick = () => {
     // console.log("Uppercase was clicked" + text);
     let newText = text.toLowerCase();
     setText(newText);
+    props.showAlert(": Converted to lowercase!", "success");
   };
 
   function countSentences(text) {
@@ -41,10 +43,12 @@ export default function TextForm(props) {
 
     titleCase += newText + "";
     console.log(setText(titleCase));
+    props.showAlert(": Converted to titlecase!", "success");
   };
   const speak = () => {
     let msg = new SpeechSynthesisUtterance(text);
     speechSynthesis.speak(msg);
+    props.showAlert(": Audio has been started!", "success");
     // const toggle = document.getElementsById("toggle");
     // if (toggle.textContent === "Speak") {
     //   toggle.innerHTML = "Stop";
@@ -58,22 +62,26 @@ export default function TextForm(props) {
 
   const stop = () => {
     speechSynthesis.cancel();
+    props.showAlert(": Audio stopped successully!", "success");
   };
 
   const handleCopyText = () => {
     let text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert(": Text has been copied to clipboard!", "success");
   };
 
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showAlert(": Extra spaces has been removed!", "success");
   };
 
   const handleClearText = () => {
     let newText = "";
     setText(newText);
+    props.showAlert(": Text have been cleared!", "success");
   };
 
   // const paragraphRemove = () => {
@@ -90,32 +98,32 @@ export default function TextForm(props) {
 
   // Enabling the theme mode===================
 
-  const [myStyle, setMyStyle] = useState({
-    color: "black",
-    backgroundColor: "white",
-  });
+  // const [myStyle, setMyStyle] = useState({
+  //   color: "#042743",
+  //   backgroundColor: "white",
+  // });
 
-  const [btnText, setBtnText] = useState("Enable Dark Mode");
+  // const [btnText, setBtnText] = useState("Enable Dark Mode");
   // let myStyle ={
   //     color:'white',
-  //     backgroundColor:'black'
+  //     backgroundColor:'#042743'
   // }
 
-  const toggleStyle = () => {
-    if (myStyle.color === "black") {
-      setMyStyle({
-        color: "white",
-        backgroundColor: "black",
-      });
-      setBtnText("Enable Light Mode");
-    } else {
-      setMyStyle({
-        color: "black",
-        backgroundColor: "white",
-      });
-      setBtnText("Enable Dark Mode");
-    }
-  };
+  // const toggleStyle = () => {
+  //   if (myStyle.color === "#042743") {
+  //     setMyStyle({
+  //       color: "white",
+  //       backgroundColor: "#042743",
+  //     });
+  //     setBtnText("Enable Light Mode");
+  //   } else {
+  //     setMyStyle({
+  //       color: "#042743",
+  //       backgroundColor: "white",
+  //     });
+  //     setBtnText("Enable Dark Mode");
+  //   }
+  // };
 
   function countingLines(text) {
     // text.split(/\r\n|\r|\n/).length
@@ -137,16 +145,38 @@ export default function TextForm(props) {
 
   return (
     <>
-      <div>
+      <div
+        className="container"
+        style={{ color: props.mode === "dark" ? "white" : "#042743" }}
+      >
         <h1>{props.heading}</h1>
         <div className="mb-3">
           <textarea
             value={text}
             className="form-control "
             onChange={handleOnChange}
+            style={{
+              backgroundColor:
+                props.modeR === "dark"
+                  ? "#ff3535"
+                  : props.mode === "dark"
+                  ? "grey"
+                  : props.modeG === "dark"
+                  ? "#03ab03"
+                  : props.modeB === "dark"
+                  ? "#2727ff"
+                  : "white",
+              color: props.mode === "dark" ? "white" : "#042743",
+            }}
+            // style={{
+            //   backgroundColor:
+            //     props.mode === "dark"
+            //       ? "grey"
+            //       : "white",
+            //   color: props.mode === "dark" ? "white" : "#042743",
+            // }}
             id="myBox"
             rows="10"
-            style={myStyle}
           ></textarea>
         </div>
 
@@ -155,7 +185,7 @@ export default function TextForm(props) {
         </button>
        */}
 
-        <button className="btn btn-primary mx-1" onClick={handleUpClick}>
+        <button className="btn  mx-1" style={{background:"red"}} onClick={handleUpClick}>
           Covert to Uppercase
         </button>
         <button className="btn btn-primary mx-1" onClick={handleLoClick}>
@@ -178,13 +208,13 @@ export default function TextForm(props) {
           Paragraph Remove
         </button> */}
 
-        <button
+        {/* <button
           onClick={toggleStyle}
           type="button"
           className="btn btn-primary my-3"
         >
           {btnText}
-        </button>
+        </button> */}
 
         <button
           type="submit"
@@ -199,7 +229,10 @@ export default function TextForm(props) {
         </button>
       </div>
 
-      <div className="container my-3">
+      <div
+        className="container my-3"
+        style={{ color: props.mode === "dark" ? "white" : "#042743" }}
+      >
         <h1>Your text summary</h1>
         <p>
           <strong>Words:</strong> {text.split(" ").length}
@@ -209,7 +242,6 @@ export default function TextForm(props) {
           <br />
           <strong>Lines:</strong>
           {countingLines(text)}
-
           {/* {text.split(/\r\n|\r|\n/).length} */}
           <br />
           <strong>Sentences:</strong>
@@ -224,7 +256,11 @@ export default function TextForm(props) {
           <br />
         </p>
         <h3>Preview</h3>
-        <p className="border border-secondary">{text}</p>
+        <p className="border border-secondary">
+          {text.length > 0
+            ? text
+            : "Enter something in the textbox above to preview it here."}
+        </p>
       </div>
     </>
   );
