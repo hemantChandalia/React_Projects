@@ -1,7 +1,45 @@
-import React, { useState } from "react";
-// import { CopyToClipboard } from 'react';
+import React, { useEffect, useState } from "react";
 
-export default function TextForm(props) {
+// import { CopyToClipboard } from 'react';
+// export default HeadingFirstLine;
+
+// const HeadingFirstLine = (props) => {
+//   const { text, setText, showAlert } = props;
+
+//   const capitalizeFirstLetter = (str) => {
+//     return str.charAt(0).toUpperCase() + str.slice(1);
+//   };
+
+//   const handleHeadingFirstLine = () => {
+//     if (text.trim() === "") {
+//       showAlert("Please enter some text", "danger");
+//       return;
+//     }
+
+//     const lines = text.split("\n");
+//     const firstLine = lines[0].trim();
+
+//     const capitalizedFirstLine = capitalizeFirstLetter(firstLine);
+//     const boldFirstLine = (
+//       <h1>
+//         <strong>{capitalizedFirstLine}</strong>
+//       </h1>
+//     );
+
+//     setText(boldFirstLine);
+//     showAlert("First line set as heading!", "success");
+//   };
+
+//   return (
+//     <>
+//       {/* JSX for HeadingFirstLine component */}
+//       <button className="btn btn-primary mx-1" onClick={handleHeadingFirstLine}>
+//         Set First Line as Heading
+//       </button>
+//     </>
+//   );
+// };
+const TextForm = (props) => {
   const [text, setText] = useState("Enter text here");
   // const [text, setTextToCopy] = useState(''); // The text you want to copy
 
@@ -31,10 +69,14 @@ export default function TextForm(props) {
     return sentences.length;
   }
 
-  // const handleCopyToClipboard = () => {
+  // const headngFirstLine = () => {
   //   // console.log("Uppercase was clicked" + text);
+  //   let firstLine = <h1>""</h1>;
   //   let newText = text.toLowerCase();
-  //   setText(newText);
+
+  //   firstLine += newText + "";
+  //   console.log(setText(firstLine));
+  //   props.showAlert(": First Line as heading!", "success");
   // };
   const handleTitleCase = () => {
     // console.log("Uppercase was clicked" + text);
@@ -141,14 +183,15 @@ export default function TextForm(props) {
 
     return numberOfNonBlankLines;
   }
+
+  // HeadingFirstLine(props);
   countingLines(text);
+
+  const [textAreaBG, setTextAreaBG] = useState("white");
 
   return (
     <>
-      <div
-        className="container"
-        style={{ color: props.mode === "dark" ? "white" : "#042743" }}
-      >
+      <div className="container">
         <h1>{props.heading}</h1>
         <div className="mb-3">
           <textarea
@@ -156,26 +199,10 @@ export default function TextForm(props) {
             className="form-control "
             onChange={handleOnChange}
             style={{
-              backgroundColor:
-                props.modeR === "dark"
-                  ? "#ff3535"
-                  : props.mode === "dark"
-                  ? "grey"
-                  : props.modeG === "dark"
-                  ? "#03ab03"
-                  : props.modeB === "dark"
-                  ? "#2727ff"
-                  : "white",
-              color: props.mode === "dark" ? "white" : "#042743",
+              backgroundColor: "white",
+              color: "black",
             }}
-            // style={{
-            //   backgroundColor:
-            //     props.mode === "dark"
-            //       ? "grey"
-            //       : "white",
-            //   color: props.mode === "dark" ? "white" : "#042743",
-            // }}
-            id="myBox"
+            id="text-area-bg"
             rows="10"
           ></textarea>
         </div>
@@ -185,12 +212,25 @@ export default function TextForm(props) {
         </button>
        */}
 
-        <button className="btn  mx-1" style={{background:"red"}} onClick={handleUpClick}>
+        <button
+          className="btn  mx-1"
+          style={{ background: "red" }}
+          onClick={handleUpClick}
+        >
           Covert to Uppercase
         </button>
         <button className="btn btn-primary mx-1" onClick={handleLoClick}>
           Covert to Lowercase
         </button>
+        {/* <button
+            className="btn  btn-primary mx-1"
+            onClick={handleHeadingFirstLine}
+          >
+            Heading
+          </button> */}
+        {/* <button className="btn  btn-primary mx-1" onClick={headngFirstLine}>
+          Heading
+        </button> */}
         <button className="btn btn-primary mx-1" onClick={handleTitleCase}>
           Title Case
         </button>
@@ -229,10 +269,7 @@ export default function TextForm(props) {
         </button>
       </div>
 
-      <div
-        className="container my-3"
-        style={{ color: props.mode === "dark" ? "white" : "#042743" }}
-      >
+      <div className="container my-3">
         <h1>Your text summary</h1>
         <p>
           <strong>Words:</strong> {text.split(" ").length}
@@ -264,4 +301,5 @@ export default function TextForm(props) {
       </div>
     </>
   );
-}
+};
+export default TextForm;
