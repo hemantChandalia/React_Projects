@@ -1,12 +1,15 @@
 import { useState } from "react";
 import "./App.css";
 import About from "./components/About";
-import Navbar from "./components/Navbar";
-import TextForm from "./components/TextForm";
+// import Navbar from "./components/Navbar.1";
+import Navbar from "./components/Navbar.H";
+import TextForm from "./components/TextForm.H";
+// import TextForm from "./components/TextForm";
 import Alert from "./components/Alert";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
+  const [mode, setMode] = useState("light"); // Whether dark mode is enabled or not
   const [alert, setAlert] = useState(null);
 
   const showAlert = (message, type) => {
@@ -14,50 +17,34 @@ function App() {
       msg: message,
       type: type,
     });
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
   };
 
-  // const redMode = () => {
-  //   handleMultipleThemeState("red");
-  //   if (modeR === "light") {
-  //     setMode("dark");
-  //     document.body.style.backgroundColor = "red";
-  //     showAlert(": Red mode has been enabled.", "success");
-  //   } else {
-  //     setMode("light");
-  //     document.body.style.backgroundColor = "white";
-  //     showAlert(": Light mode has been enabled.", "success");
-  //   }
-  // };
+  const toggleMode = () => {
+    if (mode === "light") {
+      setMode("dark");
+      document.body.style.backgroundColor = "#042743";
+      // document.body.style.color = "white !important";
+      showAlert("Dark mode has been enabled", "success");
+    } else {
+      setMode("light");
+      document.body.style.backgroundColor = "white";
+      // document.body.style.color = "black !important";
 
-  // const greenMode = () => {
-  //   handleMultipleThemeState("green");
-  //   if (mode === "light") {
-  //     setMode("dark");
-  //     document.body.style.backgroundColor = "green";
-  //     showAlert(": Green mode has been enabled.", "success");
-  //   } else {
-  //     setMode("light");
-  //     document.body.style.backgroundColor = "white";
-  //     showAlert(": Light mode has been enabled.", "success");
-  //   }
-  // };
-
-  // const blueMode = () => {
-  //   handleMultipleThemeState("blue");
-  //   if (mode === "light") {
-  //     setMode("dark");
-  //     document.body.style.backgroundColor = "blue";
-  //     showAlert(": Blue mode has been enabled.", "success");
-  //   } else {
-  //     setMode("light");
-  //     document.body.style.backgroundColor = "white";
-  //     showAlert(": Light mode has been enabled.", "success");
-  //   }
-  // };
+      showAlert("Light mode has been enabled", "success");
+    }
+  };
 
   return (
     <>
-      <Navbar title="TextUtils" showAlert={showAlert} />
+      <Navbar
+        title="TextUtils"
+        showAlert={showAlert}
+        mode={mode}
+        toggleMode={toggleMode}
+      />
       <Alert alert={alert} />
 
       <div className="container my-3">

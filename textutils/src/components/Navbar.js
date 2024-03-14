@@ -1,50 +1,51 @@
+
 import React, { useState } from "react";
 
 import PropTypes from "prop-types";
 
 function Navbar(props) {
   const [mode, setMode] = useState("light");
-  const [redModeChecked, setRedModeChecked] = useState(false);
-  const [greenModeChecked, setGreenModeChecked] = useState(false);
-  const [blueModeChecked, setBlueModeChecked] = useState(false);
-  const [toggleModeChecked, setToggleModeChecked] = useState(false);
+  // const [redModeChecked, setRedModeChecked] = useState(false);
+  // const [greenModeChecked, setGreenModeChecked] = useState(false);
+  // const [blueModeChecked, setBlueModeChecked] = useState(false);
+  // const [toggleModeChecked, setToggleModeChecked] = useState(false);
 
-  function handleMultipleThemeState(_type) {
-    if (_type == "green") {
-      setGreenModeChecked(!greenModeChecked);
-      // make unchecked all others
-      setRedModeChecked(false);
-      setBlueModeChecked(false);
-      setToggleModeChecked(false);
-    } else if (_type == "red") {
-      setRedModeChecked(!redModeChecked);
-      // make unchecked all others
-      setGreenModeChecked(false);
-      setBlueModeChecked(false);
-      setToggleModeChecked(false);
-    } else if (_type == "blue") {
-      setBlueModeChecked(!blueModeChecked);
-      // make unchecked all others
-      setGreenModeChecked(false);
-      setRedModeChecked(false);
-      setToggleModeChecked(false);
-    } else if (_type == "dark") {
-      setToggleModeChecked(!toggleModeChecked);
-      // make unchecked all others
-      setGreenModeChecked(false);
-      setRedModeChecked(false);
-      setBlueModeChecked(false);
-    } else {
-      setToggleModeChecked(false);
-      setGreenModeChecked(false);
-      setRedModeChecked(false);
-      setBlueModeChecked(false);
-    }
-  }
+  // function handleMultipleThemeState(_type) {
+  //   if (_type == "green") {
+  //     setGreenModeChecked(!greenModeChecked);
+  //     // make unchecked all others
+  //     setRedModeChecked(false);
+  //     setBlueModeChecked(false);
+  //     setToggleModeChecked(false);
+  //   } else if (_type == "red") {
+  //     setRedModeChecked(!redModeChecked);
+  //     // make unchecked all others
+  //     setGreenModeChecked(false);
+  //     setBlueModeChecked(false);
+  //     setToggleModeChecked(false);
+  //   } else if (_type == "blue") {
+  //     setBlueModeChecked(!blueModeChecked);
+  //     // make unchecked all others
+  //     setGreenModeChecked(false);
+  //     setRedModeChecked(false);
+  //     setToggleModeChecked(false);
+  //   } else if (_type == "dark") {
+  //     setToggleModeChecked(!toggleModeChecked);
+  //     // make unchecked all others
+  //     setGreenModeChecked(false);
+  //     setRedModeChecked(false);
+  //     setBlueModeChecked(false);
+  //   } else {
+  //     setToggleModeChecked(false);
+  //     setGreenModeChecked(false);
+  //     setRedModeChecked(false);
+  //     setBlueModeChecked(false);
+  //   }
+  // }
 
   const toggleMode = (colorTheme) => {
     console.log("colorTheme >>> ", colorTheme);
-    handleMultipleThemeState(colorTheme);
+    // handleMultipleThemeState(colorTheme);
     if (mode === colorTheme) {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -61,21 +62,21 @@ function Navbar(props) {
       document.title = `TextUtils - ${colorTheme} Mode`;
     }
   };
-  function redHandler(_colorType) {
-    toggleMode(_colorType);
-  }
+  // function redHandler(_colorType) {
+  //   toggleMode(_colorType);
+  // }
 
-  function greenHandler(_colorType) {
-    toggleMode(_colorType);
-  }
+  // function greenHandler(_colorType) {
+  //   toggleMode(_colorType);
+  // }
 
-  function blueHandler(_colorType) {
-    toggleMode(_colorType);
-  }
+  // function blueHandler(_colorType) {
+  //   toggleMode(_colorType);
+  // }
 
-  function toggleHandler(_colorType) {
-    toggleMode(_colorType);
-  }
+  // function toggleHandler(_colorType) {
+  //   toggleMode(_colorType);
+  // }
 
   return (
     <nav
@@ -113,22 +114,22 @@ function Navbar(props) {
 
           <div className="form-check form-switch">
             <input
-              className="form-check-input"
-              onClick={() => {
-                redHandler("red");
-              }}
-              type="checkbox"
-              role="switch"
-              id="flexSwitchCheckDefault"
-              checked={redModeChecked}
+              // className="form-check-input"
+              // onClick={() => {
+              //   redHandler("red");
+              // }}
+              // type="checkbox"
+              // role="switch"
+              // id="flexSwitchCheckDefault"
+              // checked={redModeChecked}
               // checked={true}
 
               // disabled={"dark" ? true : false}
             />
 
             <label
-              className="form-check-label"
-              htmlFor="flexSwitchCheckDefault"
+              // className="form-check-label"
+              // htmlFor="flexSwitchCheckDefault"
             >
               Red Mode
             </label>
@@ -136,11 +137,11 @@ function Navbar(props) {
           <div className="form-check form-switch">
             <input
               className="form-check-input"
-              onClick={() => greenHandler("green")}
+              // onClick={() => greenHandler("green")}
               type="checkbox"
               role="switch"
               id="flexSwitchCheckDefault"
-              checked={greenModeChecked}
+              // checked={greenModeChecked}
               // disabled={"dark" ? true : false}
             />
             <label
@@ -153,11 +154,11 @@ function Navbar(props) {
           <div className="form-check form-switch">
             <input
               className="form-check-input"
-              onClick={() => blueHandler("blue")}
+              // onClick={() => blueHandler("blue")}
               type="checkbox"
               role="switch"
               id="flexSwitchCheckDefault"
-              checked={blueModeChecked}
+              // checked={blueModeChecked}
               // disabled={"dark" ? true : false}
             />
             <label
@@ -174,7 +175,7 @@ function Navbar(props) {
           >
             <input
               className="form-check-input"
-              onClick={() => toggleHandler("dark")}
+              // onClick={() => toggleHandler("dark")}
               type="checkbox"
               role="switch"
               checked={toggleModeChecked}

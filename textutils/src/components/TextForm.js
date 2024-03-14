@@ -1,44 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-// import { CopyToClipboard } from 'react';
-// export default HeadingFirstLine;
-
-// const HeadingFirstLine = (props) => {
-//   const { text, setText, showAlert } = props;
-
-//   const capitalizeFirstLetter = (str) => {
-//     return str.charAt(0).toUpperCase() + str.slice(1);
-//   };
-
-//   const handleHeadingFirstLine = () => {
-//     if (text.trim() === "") {
-//       showAlert("Please enter some text", "danger");
-//       return;
-//     }
-
-//     const lines = text.split("\n");
-//     const firstLine = lines[0].trim();
-
-//     const capitalizedFirstLine = capitalizeFirstLetter(firstLine);
-//     const boldFirstLine = (
-//       <h1>
-//         <strong>{capitalizedFirstLine}</strong>
-//       </h1>
-//     );
-
-//     setText(boldFirstLine);
-//     showAlert("First line set as heading!", "success");
-//   };
-
-//   return (
-//     <>
-//       {/* JSX for HeadingFirstLine component */}
-//       <button className="btn btn-primary mx-1" onClick={handleHeadingFirstLine}>
-//         Set First Line as Heading
-//       </button>
-//     </>
-//   );
-// };
 const TextForm = (props) => {
   const [text, setText] = useState("Enter text here");
   // const [text, setTextToCopy] = useState(''); // The text you want to copy
@@ -69,15 +30,6 @@ const TextForm = (props) => {
     return sentences.length;
   }
 
-  // const headngFirstLine = () => {
-  //   // console.log("Uppercase was clicked" + text);
-  //   let firstLine = <h1>""</h1>;
-  //   let newText = text.toLowerCase();
-
-  //   firstLine += newText + "";
-  //   console.log(setText(firstLine));
-  //   props.showAlert(": First Line as heading!", "success");
-  // };
   const handleTitleCase = () => {
     // console.log("Uppercase was clicked" + text);
     let titleCase = "";
@@ -91,15 +43,6 @@ const TextForm = (props) => {
     let msg = new SpeechSynthesisUtterance(text);
     speechSynthesis.speak(msg);
     props.showAlert(": Audio has been started!", "success");
-    // const toggle = document.getElementsById("toggle");
-    // if (toggle.textContent === "Speak") {
-    //   toggle.innerHTML = "Stop";
-    // } else {
-    //   toggle.innerHTML = "Speak";
-    //   if ((toggle.innerHTML = "Speak")) {
-    //     window.speechSynthesis.cancel();
-    //   }
-    // }
   };
 
   const stop = () => {
@@ -108,7 +51,7 @@ const TextForm = (props) => {
   };
 
   const handleCopyText = () => {
-    let text = document.getElementById("myBox");
+    let text = document.getElementById("text-area-bg");
     text.select();
     navigator.clipboard.writeText(text.value);
     props.showAlert(": Text has been copied to clipboard!", "success");
@@ -126,46 +69,10 @@ const TextForm = (props) => {
     props.showAlert(": Text have been cleared!", "success");
   };
 
-  // const paragraphRemove = () => {
-  //   let newText = text.replace(/[\n\r]+/g, " ");
-  //   setMyStyle(newText);
-  // };
-
   const handleOnChange = (event) => {
     // console.log("on change");
     setText(event.target.value);
   };
-  // tex"new text"; // wrong way to change the state
-  // setText("new text"); // Correct way to change the statet =
-
-  // Enabling the theme mode===================
-
-  // const [myStyle, setMyStyle] = useState({
-  //   color: "#042743",
-  //   backgroundColor: "white",
-  // });
-
-  // const [btnText, setBtnText] = useState("Enable Dark Mode");
-  // let myStyle ={
-  //     color:'white',
-  //     backgroundColor:'#042743'
-  // }
-
-  // const toggleStyle = () => {
-  //   if (myStyle.color === "#042743") {
-  //     setMyStyle({
-  //       color: "white",
-  //       backgroundColor: "#042743",
-  //     });
-  //     setBtnText("Enable Light Mode");
-  //   } else {
-  //     setMyStyle({
-  //       color: "#042743",
-  //       backgroundColor: "white",
-  //     });
-  //     setBtnText("Enable Dark Mode");
-  //   }
-  // };
 
   function countingLines(text) {
     // text.split(/\r\n|\r|\n/).length
@@ -187,7 +94,7 @@ const TextForm = (props) => {
   // HeadingFirstLine(props);
   countingLines(text);
 
-  const [textAreaBG, setTextAreaBG] = useState("white");
+  // const [textAreaBG, setTextAreaBG] = useState("white");
 
   return (
     <>
@@ -207,11 +114,6 @@ const TextForm = (props) => {
           ></textarea>
         </div>
 
-        {/* <button className="btn btn-primary mx-1" onClick={handleCopyToClipboard} >
-          Copy To Clipboard
-        </button>
-       */}
-
         <button
           className="btn  mx-1"
           style={{ background: "red" }}
@@ -222,15 +124,7 @@ const TextForm = (props) => {
         <button className="btn btn-primary mx-1" onClick={handleLoClick}>
           Covert to Lowercase
         </button>
-        {/* <button
-            className="btn  btn-primary mx-1"
-            onClick={handleHeadingFirstLine}
-          >
-            Heading
-          </button> */}
-        {/* <button className="btn  btn-primary mx-1" onClick={headngFirstLine}>
-          Heading
-        </button> */}
+
         <button className="btn btn-primary mx-1" onClick={handleTitleCase}>
           Title Case
         </button>
@@ -244,17 +138,6 @@ const TextForm = (props) => {
         <button className="btn btn-primary mx-1" onClick={handleClearText}>
           Clear Text
         </button>
-        {/* <button className="btn btn-primary mx-1" onClick={paragraphRemove}>
-          Paragraph Remove
-        </button> */}
-
-        {/* <button
-          onClick={toggleStyle}
-          type="button"
-          className="btn btn-primary my-3"
-        >
-          {btnText}
-        </button> */}
 
         <button
           type="submit"
