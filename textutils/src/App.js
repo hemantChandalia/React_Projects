@@ -54,6 +54,7 @@ function App() {
             index
             element={
               <TextForm
+                mode={mode}
                 showAlert={showAlert}
                 heading="Enter the text to analyze below"
               />

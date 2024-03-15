@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
+  console.log("testing >>>> Navbar >> props", props?.mode);
+
   return (
     <nav
       className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
@@ -50,8 +52,9 @@ export default function Navbar(props) {
             <label
               className="form-check-label"
               htmlFor="flexSwitchCheckDefault"
+              style={{ color: props?.mode == "light" ? "black" : "white" }}
             >
-              Enable {props.mode === "light" ? "dark" : "light"} DarkMode
+              Enable {props?.mode === "light" ? "Dark" : "Light"} Mode
             </label>
           </div>
         </div>
